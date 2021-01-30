@@ -4,7 +4,6 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"log"
 	"os"
 	"os/signal"
 	"time"
@@ -45,7 +44,6 @@ func wait() (string, error) {
 
 	signal.Notify(death, os.Interrupt, os.Kill)
 	ticker := time.NewTicker(time.Second * 5) // check every 5 minutes
-	fmt.Printf("Waiting for %s %s .", *vid, *pid)
 	for {
 		select {
 		case <-death:
@@ -65,11 +63,12 @@ func main() {
 	flag.Parse()
 	port, err := wait()
 	if err != nil {
-		log.Fatal(err)
 		panic(err)
 	}
-	command := os.Args[6]
-	args := os.Args[7:]
+
+	args := flag.Args()
+	command := args[0]
+	args = args[1:]
 	for i, arg := range args {
 		if arg == "{}" {
 			args[i] = port
