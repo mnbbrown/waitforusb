@@ -1,0 +1,15 @@
+# github.com/creack/goselect v0.1.1
+## explicit
+github.com/creack/goselect
+# github.com/stretchr/testify v1.7.0
+## explicit
+# go.bug.st/serial.v1 v0.0.0-20191202182710-24a6610f0541
+## explicit
+go.bug.st/serial.v1
+go.bug.st/serial.v1/enumerator
+go.bug.st/serial.v1/unixutils
+# golang.org/x/sys v0.0.0-20210124154548-22da62e12c0c
+## explicit
+golang.org/x/sys/internal/unsafeheader
+golang.org/x/sys/unix
+golang.org/x/sys/windows
