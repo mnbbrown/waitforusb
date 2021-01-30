@@ -41,6 +41,9 @@ func wait() (string, error) {
 	if err == nil {
 		return port, nil
 	}
+	if err != ErrNotFound {
+		return "", err
+	}
 
 	signal.Notify(death, os.Interrupt, os.Kill)
 	ticker := time.NewTicker(time.Second * 5) // check every 5 minutes
@@ -52,6 +55,9 @@ func wait() (string, error) {
 			fmt.Print(".")
 			port, err := check(*vid, *pid)
 			if err != nil {
+				if err == ErrNotFound {
+					return "", err
+				}
 				continue
 			}
 			return port, nil
