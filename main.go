@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"flag"
-	"fmt"
 	"os"
 	"os/signal"
 	"time"
@@ -52,10 +51,9 @@ func wait() (string, error) {
 		case <-death:
 			os.Exit(0)
 		case <-ticker.C:
-			fmt.Print(".")
 			port, err := check(*vid, *pid)
 			if err != nil {
-				if err == ErrNotFound {
+				if err != ErrNotFound {
 					return "", err
 				}
 				continue
